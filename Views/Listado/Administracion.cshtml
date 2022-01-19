@@ -1,0 +1,95 @@
+﻿<!--Vista que nos permite agregar o actualizar una palabra en ingles con sus significados-->
+
+@using TraductorWeb.Models.CustomModels;
+
+@{/*Solicitamos el model que tendra todos los datos de la palabra a actualizar*/}
+@model Listado
+<form id="formAdministracion" v-on:submit="vaciarContenido" class="bg-white formAdministracion" asp-action="Administrar" asp-controller="Listado" method="post">
+    <div>
+        <!--inputs que contienen datos que no carga el usuario-->
+        <input id="IdPalabraIngles" type="hidden" asp-for="IdPalabraIngles" />
+        <input id="IdSignificados" type="hidden" asp-for="IdSignificados" />
+        <input id="Pagina" type="hidden" asp-for="Pagina"/>
+    </div>
+    <div class="row">
+        <div class="form-group col-8 col-sm-4">
+            <label class="font-weight-bold">Palabra a traducir</label>
+            <input id="PalabraIngles" type="text" class="form-control" asp-for="PalabraIngles" />
+            <span id="ErrorPalabraIngles" class="text-danger" asp-validation-for="PalabraIngles"></span>
+        </div>
+        <div class="form-group col-8 col-sm-4">
+            <label class="font-weight-bold">Verbo en presente</label>
+            <input id="PalabraInglesPresente" type="text" class="form-control" asp-for="PalabraInglesPresente" />
+            <span id="ErrorPalabraInglesPresente" class="text-danger" asp-validation-for="PalabraInglesPresente"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-10 col-sm-5">
+            <label class="font-weight-bold">Traduccion Nº1</label>
+            <input id="SignificadoEspañol_1" type="text" v-on:keypress="habilitarSignificado2" class="form-control" asp-for="SignificadoEspañol_1" />
+            <span id="ErrorSignificadoEspañol_1" class="text-danger" asp-validation-for="SignificadoEspañol_1"></span>
+        </div>
+        <div class="form-group col-10 col-sm-5">
+            <label class="font-weight-bold">Traduccion Nº2</label>
+            <input id="SignificadoEspañol_2" type="text" readonly v-on:keypress="habilitarSignificado3" class="form-control" asp-for="SignificadoEspañol_2" />
+            <span id="ErrorSignificadoEspañol_2" class="text-danger" asp-validation-for="SignificadoEspañol_2"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-10 col-sm-5">
+            <label class="font-weight-bold">Traduccion Nº3</label>
+            <input id="SignificadoEspañol_3" type="text" readonly v-on:keypress="habilitarSignificado4"  class="form-control" asp-for="SignificadoEspañol_3" />
+            <span id="ErrorSignificadoEspañol_3" class="text-danger" asp-validation-for="SignificadoEspañol_3"></span>
+        </div>
+        <div class="form-group col-10 col-sm-5">
+            <label class="font-weight-bold">Traduccion Nº4</label>
+            <input id="SignificadoEspañol_4" type="text" readonly v-on:keypress="habilitarSignificado5"  class="form-control" asp-for="SignificadoEspañol_4" />
+            <span id="ErrorSignificadoEspañol_4" class="text-danger" asp-validation-for="SignificadoEspañol_4"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-10 col-sm-5">
+            <label class="font-weight-bold">Traduccion Nº5</label>
+            <input id="SignificadoEspañol_5" type="text" readonly v-on:keypress="habilitarSignificado6"  class="form-control" asp-for="SignificadoEspañol_5" />
+            <span id="ErrorSignificadoEspañol_5" class="text-danger" asp-validation-for="SignificadoEspañol_5"></span>
+        </div>
+        <div class="form-group col-10 col-sm-5">
+            <label class="font-weight-bold">Traduccion Nº6</label>
+            <input id="SignificadoEspañol_6" type="text" readonly v-on:keypress="habilitarSignificado7"  class="form-control" asp-for="SignificadoEspañol_6" />
+            <span id="ErrorSignificadoEspañol_6" class="text-danger" asp-validation-for="SignificadoEspañol_6"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-10 col-sm-5">
+            <label class="font-weight-bold">Traduccion Nº7</label>
+            <input id="SignificadoEspañol_7" type="text" readonly v-on:keypress="habilitarSignificado8"  class="form-control" asp-for="SignificadoEspañol_7" />
+            <span id="ErrorSignificadoEspañol_7" class="text-danger" asp-validation-for="SignificadoEspañol_7"></span>
+        </div>
+        <div class="form-group col-10 col-sm-5">
+            <label class="font-weight-bold">Traduccion Nº8</label>
+            <input id="SignificadoEspañol_8" type="text" readonly v-on:keypress="habilitarSignificado9"  class="form-control" asp-for="SignificadoEspañol_8" />
+            <span id="ErrorSignificadoEspañol_" class="text-danger" asp-validation-for="SignificadoEspañol_8"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-10 col-sm-5">
+            <label class="font-weight-bold">Traduccion Nº9</label>
+            <input id="SignificadoEspañol_9" type="text" readonly v-on:keypress="habilitarSignificado10"  class="form-control" asp-for="SignificadoEspañol_9" />
+            <span id="ErrorSignificadoEspañol_9" class="text-danger" asp-validation-for="SignificadoEspañol_9"></span>
+        </div>
+        <div class="form-group col-10 col-sm-5">
+            <label class="font-weight-bold">Traduccion Nº10</label>
+            <input id="SignificadoEspañol_10" type="text" readonly class="form-control" asp-for="SignificadoEspañol_10" />
+            <span id="ErrorSignificadoEspañol_10" class="text-danger" asp-validation-for="SignificadoEspañol_10"></span>
+        </div>
+    </div>
+    <!--span que tendra un mensaje advirtiendo si se logro realizar la accion o no-->
+    <span class="table-info">@(ViewBag.mensaje == null ? "" : ViewBag.mensaje)</span>
+    <div class="row pt-2">
+        @{ /*Verificamos si el modelo esta cargado para elegir que opcion texto mostrar al usuario*/}
+        @{ string mensajeBoton = Model.IdSignificados != 0 ? "Actualizar" : "Agregar";}
+        <button type="button" v-on:click="administrarRegistro" class="btn btn-dark botonAccionAdministracion">@mensajeBoton</button>
+    </div>
+
+
+</form>
